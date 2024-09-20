@@ -1,0 +1,1 @@
+The Quote Generator is a fun, lightweight project that allows users to generate random happiness quotes at the click of a button. The quotes are fetched dynamically using a public API, providing a wide variety of inspirational messages to brighten someone's day.
