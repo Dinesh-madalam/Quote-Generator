@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUOTE GENERATOR</title>
+    <link rel="stylesheet" href="./quote.css">
+</head>
+<body>
+    <div class="container"> 
+        <div class="quote_box">
+            <p id="quote"></p>
+            <h4 id="author"></h4>
+            <button id="btnq">Click me</button>
+        </div>
+    </div>
+
+    <script>
+        const quote = document.getElementById("quote");
+        const author = document.getElementById("author");
+        const btn = document.getElementById("btnq");
+        const url = "https://api.api-ninjas.com/v1/quotes?category=happiness";
+
+        let getquote = () => {
+            quote.classList.remove("fade");
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'X-Api-Key': 'CV2/DkgQCjtaGHhIzEBHpg==KWNy9m9YwgRo260A',
+                },
+                mode: 'cors'
+            })
+            .then(response => response.json())
+            .then(data => {
+                let item = data[0]; // Since the API returns an array, access the first item
+                quote.innerText = `"${item.quote}"`;
+                author.innerText = `- ${item.author}`;
+            })
+            .catch(error => {
+                quote.innerText = "An error occurred. Please try again!";
+                author.innerText = "";
+                console.error('Error:', error);
+            });
+        };
+
+        btn.addEventListener("click", getquote);
+        getquote();
+    </script>
+</body>
+</html>
